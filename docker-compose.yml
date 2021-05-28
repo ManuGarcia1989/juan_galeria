@@ -2,11 +2,11 @@ version: '3'
 
 services:
  web:
-    build: ./django_service/employees
+    build: ./PorPintar
     command: python manage.py runserver 0.0.0.0:80
-    container_name: employees-web
+    container_name: web
     volumes:
-      - ./django_service/employees/:/srv/src/
+      - ./PorPintar/:/srv/src/
     ports:
       - 80:80
     restart: always
