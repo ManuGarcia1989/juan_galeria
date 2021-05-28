@@ -1,12 +1,12 @@
 version: '3'
 
 services:
- web:
-    build: ./PorPintar
+  web:
+    build: ./por_pintar
     command: python manage.py runserver 0.0.0.0:80
     container_name: web
     volumes:
-      - ./PorPintar/:/srv/src/
+      - ./por_pintar/:/srv/src/
     ports:
       - 80:80
     restart: always
