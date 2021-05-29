@@ -20,10 +20,25 @@
 <a-scene shadow="type:pcfsoft">
     <a-assets>
         <a-asset-item id="scene3d" src="{% static 'space3d/scenejuan.gltf' %}"></a-asset-item>
+
+        {% for obra in obras %}
+        <a-asset-item id="obra_{{ obra.id }}" src="/media/{{ obra.model }}" ></a-asset-item>
+        {% endfor %}
+
     </a-assets>
+
+    {% for obra in obras %}
+        <a-entity id="obra_escena_{{ obra.id }}"
+                  gltf-model="#obra_{{ obra.id }}"
+                  position="{{ obra.position }}"
+                  rotation="{{ obra.rotation }}"
+                  scale="{{ obra.scale }}">
+
+        </a-entity>
+    {% endfor %}
+
     <a-entity scenemodelo gltf-model="#scene3d" scale="1 1 1"  material modify-materials></a-entity>
-   <a-entity
-           camera-rig
+    <a-entity camera-rig
            id="cameraRig"
            position = "0 0 0"
            rotation="0 -90 0" >
@@ -53,6 +68,7 @@
         <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #f33A7E" daydream-controls="" gearvr-controls="" magicleap-controls="" oculus-go-controls="" oculus-touch-controls="" valve-index-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls="" generic-tracked-controller-controls=""></a-entity>
 
    </a-entity>
+
 </a-scene>
 </body>
 </html>
