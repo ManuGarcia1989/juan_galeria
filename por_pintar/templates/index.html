@@ -20,7 +20,6 @@
 <a-scene shadow="type:pcfsoft">
     <a-assets>
         <a-asset-item id="scene3d" src="{% static 'space3d/scenejuan.gltf' %}"></a-asset-item>
-
         {% for obra in obras %}
         <a-asset-item id="obra_{{ obra.id }}" src="/media/{{ obra.model }}" ></a-asset-item>
         {% endfor %}
@@ -33,7 +32,6 @@
                   position="{{ obra.position }}"
                   rotation="{{ obra.rotation }}"
                   scale="{{ obra.scale }}">
-
         </a-entity>
     {% endfor %}
 
@@ -48,7 +46,7 @@
                 camera="fov: 40" wasd-controls
                 position="0 1.3 0"
                 restrict-position
-                look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: true">
+                look-controls="magicWindowTrackingEnabled: true; touchEnabled: true; mouseEnabled: true">
 
                 </a-entity>
 
