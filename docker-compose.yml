@@ -6,11 +6,20 @@ services:
     command: python manage.py runserver 0.0.0.0:80
     container_name: web
     volumes:
-      - ./por_pintar/:/srv/src/
+      - ./por_pintar/:/usr/src/app/
     ports:
       - 80:80
-    restart: always
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=manuel_garcia
+      - POSTGRES_PASSWORD=porpintar2021
+      - POSTGRES_DB=juan_gallery
 
 volumes:
-  db-data:
-    driver: local
+  postgres_data:
