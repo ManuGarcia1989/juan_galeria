@@ -1,25 +1,31 @@
 version: '3'
 
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: 'localhost -> web:8080'
+      STAGE: 'local'
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+    links:
+      - web
   web:
     build: ./por_pintar
-    command: python manage.py runserver 0.0.0.0:80
+    command: python manage.py runserver 0.0.0.0:8080
     container_name: web
     volumes:
       - ./por_pintar/:/usr/src/app/
     ports:
-      - 80:80
-    depends_on:
-      - db
-
-  db:
-    image: postgres:12.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=manuel_garcia
-      - POSTGRES_PASSWORD=porpintar2021
-      - POSTGRES_DB=juan_gallery
+      - 8080:8080
 
 volumes:
-  postgres_data:
+  https-portal-data:
+
+networks:
+  default:
+    external:
+      name: juan_galeria_default

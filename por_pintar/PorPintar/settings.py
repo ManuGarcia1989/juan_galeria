@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'PorPintar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'juan_gallery',
-        'USER': 'manuel_garcia',
-        'PASSWORD': 'porpintar2021',
+        'USER': 'userdb',
+        'PASSWORD': 'budablues1989',
         'HOST': 'db',
-        'PORT': 5432
+        'PORT': '3306',
     }
 }
 

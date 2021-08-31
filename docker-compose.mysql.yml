@@ -1,29 +1,6 @@
 version: '3'
 
 services:
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - '80:80'
-      - '443:443'
-    environment:
-      DOMAINS: 'localhost -> web:8080'
-      STAGE: 'local'
-    volumes:
-      - https-portal-data:/var/lib/https-portal
-    links:
-      - web
-  web:
-    build: ./por_pintar
-    command: python manage.py runserver 0.0.0.0:8080
-    container_name: web
-    volumes:
-      - ./por_pintar/:/usr/src/app/
-    ports:
-      - 8080:8080
-    depends_on:
-      - db
-
   db:
     image: mysql:5.7
     restart: always
@@ -40,4 +17,6 @@ services:
       - my-db:/var/lib/mysql
 volumes:
   my-db:
-  https-portal-data:
+networks:
+  juannetwork:
+    driver: bridge
