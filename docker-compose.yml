@@ -8,7 +8,7 @@ services:
       - '443:443'
     environment:
       DOMAINS: 'test.juanjosegarcia.net -> web:8080'
-      STAGE: 'staging'
+      STAGE: 'production'
       CLIENT_MAX_BODY_SIZE: 25M
     volumes:
       - https-portal-data:/var/lib/https-portal
