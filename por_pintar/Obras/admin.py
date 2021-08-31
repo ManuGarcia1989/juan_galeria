@@ -11,5 +11,10 @@ class LightsAdmin(admin.ModelAdmin):
     list_display = ['type', 'intensity','position']
     search_fields = ['type', 'intensity','position']
 
-admin.site.register(Obras, ObrasAdmin )
+class SceneAdmin(admin.ModelAdmin):
+    list_display = ['name','active']
+    search_fields = ['name','active']
+
+admin.site.register(Obras, ObrasAdmin)
 admin.site.register(Lights, LightsAdmin)
+admin.site.register(Scene, SceneAdmin)

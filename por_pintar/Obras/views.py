@@ -14,4 +14,5 @@ class indexView(ListView):
         context = super(indexView, self).get_context_data(**kwargs)
         context['obras'] = Obras.objects.all()
         context['lights'] = Lights.objects.all()
+        context['scene'] = Scene.objects.get(active=True)
         return context

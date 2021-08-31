@@ -19,7 +19,9 @@
 
 <a-scene shadow="type:pcfsoft">
     <a-assets>
-        <a-asset-item id="scene3d" src="{% static 'space3d/escena.gltf' %}"></a-asset-item>
+        {% if scene %}
+        <a-asset-item id="scene3d" src="/media/{{scene.model }}"></a-asset-item>
+        {% endif %}
         {% for obra in obras %}
         <a-asset-item id="obra_{{ obra.id }}" src="/media/{{ obra.model }}" ></a-asset-item>
         {% endfor %}

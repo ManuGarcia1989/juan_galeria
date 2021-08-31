@@ -9,7 +9,7 @@ services:
     environment:
       DOMAINS: 'test.juanjosegarcia.net -> web:8080'
       STAGE: 'staging'
-      CLIENT_MAX_BODY_SIZE: 5M
+      CLIENT_MAX_BODY_SIZE: 25M
     volumes:
       - https-portal-data:/var/lib/https-portal
     links:

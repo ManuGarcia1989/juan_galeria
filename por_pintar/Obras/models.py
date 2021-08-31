@@ -20,5 +20,7 @@ class Lights(models.Model):
     position = models.CharField(max_length=12, help_text="0 0 0")
     rotation = models.CharField(max_length=12, help_text="0 0 0")
 
-
-
+class Scene(models.Model):
+    name = models.CharField(max_length=50,verbose_name="Scene Name")
+    model = models.FileField(upload_to="objects3D/scenes/")
+    active = models.BooleanField(default=False, verbose_name="Active Scene")
