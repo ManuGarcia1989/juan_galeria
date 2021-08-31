@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import ListView
 
-from .models import Obras
+from .models import *
 
 
 class indexView(ListView):
@@ -13,4 +13,5 @@ class indexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(indexView, self).get_context_data(**kwargs)
         context['obras'] = Obras.objects.all()
+        context['lights'] = Lights.objects.all()
         return context

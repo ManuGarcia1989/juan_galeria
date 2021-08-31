@@ -13,4 +13,12 @@ class Obras(models.Model):
     rotation = models.CharField(max_length=12, help_text = "0 0 0")
     scale = models.CharField(max_length=12, help_text = "0 0 0")
 
+class Lights(models.Model):
+    color = models.CharField(max_length=15, help_text="#FFF")
+    type = models.CharField(max_length=15, help_text="One of ambient, directional, hemisphere, point, spot.")
+    intensity = models.FloatField(verbose_name="Intensity")
+    position = models.CharField(max_length=12, help_text="0 0 0")
+    rotation = models.CharField(max_length=12, help_text="0 0 0")
+
+
 

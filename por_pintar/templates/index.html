@@ -65,8 +65,11 @@
         <!--a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity-->
         <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #f33A7E" daydream-controls="" gearvr-controls="" magicleap-controls="" oculus-go-controls="" oculus-touch-controls="" valve-index-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls="" generic-tracked-controller-controls=""></a-entity>
 
-   </a-entity>
 
+   </a-entity>
+    {% for light in lights %}
+    <a-entity id="sample_light_{{ light.id }}" light="type: {{ light.type }}; color: {{ light.color }}; intensity: {{ light.intensity }}" position="{{ light.position }}" rotation="{{ light.rotation }}"></a-entity>
+    {% endfor %}
 </a-scene>
 </body>
 </html>
