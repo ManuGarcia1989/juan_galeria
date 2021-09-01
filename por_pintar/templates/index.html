@@ -5,20 +5,18 @@
     <meta charset="UTF-8">
     <title>Juan Jose</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
 
     <!--script type="module" src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script-->
-    <script src="https://unpkg.com/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
 
 </head>
 <body>
 
 <a-scene shadow="type:pcfsoft">
     <a-assets>
+        <img id="footsteps" src="{% static 'image/footsteps.png' %}">
+
         {% if scene %}
         <a-asset-item id="scene3d" src="/media/{{scene.model }}"></a-asset-item>
         {% endif %}
@@ -34,41 +32,26 @@
                   position="{{ obra.position }}"
                   rotation="{{ obra.rotation }}"
                   scale="{{ obra.scale }}">
+                <a-image src="#footsteps" position="0 2 0" checkpoint="offset: {{ obra.checkpoint}}"
+				 look-at="#blink"></a-image>
         </a-entity>
     {% endfor %}
 
     <a-entity scenemodelo gltf-model="#scene3d" scale="1 1 1"  material modify-materials></a-entity>
+
     <a-entity camera-rig
-           id="cameraRig"
-           position = "0 0 0"
-           rotation="0 -90 0" >
-               <a-entity headgame
-                id="headXR"
-                cursor="rayOrigin: mouse; fuse: false;"
-                camera="fov: 40" wasd-controls
-                position="0 1.3 0"
-                restrict-position
+          id="camera-rig"
+          movement-controls="controls: checkpoint">
+               <a-entity
+                id="blink"
+                cursor="rayOrigin: mouse; fuse: false"
+                camera="fov: 40"
+                position="0 1.7 0"
                 look-controls="magicWindowTrackingEnabled: true; touchEnabled: true; mouseEnabled: true">
 
                 </a-entity>
 
-                <a-entity class="controles"
-                        teleport-controls="button: grip;
-                                            cameraRig: #cameraRig;
-                                            teleportOrigin: #headXR;
-                                            collisionEntities: #ground"
-                    vive-controls="hand: left"
-                    oculus-touch-controls="hand: left"
-                    microsoft-motion-controls="hand: left"
-                    daydream-controls="left"
-                    gearvr-controls="left">
-                </a-entity>
-
-        <!--a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity-->
-        <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #f33A7E" daydream-controls="" gearvr-controls="" magicleap-controls="" oculus-go-controls="" oculus-touch-controls="" valve-index-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls="" generic-tracked-controller-controls=""></a-entity>
-
-
-   </a-entity>
+    </a-entity>
     {% for light in lights %}
     <a-entity id="sample_light_{{ light.id }}" light="type: {{ light.type }}; color: {{ light.color }}; intensity: {{ light.intensity }}" position="{{ light.position }}" rotation="{{ light.rotation }}"></a-entity>
     {% endfor %}

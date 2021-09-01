@@ -9,6 +9,7 @@ class Obras(models.Model):
     dimentions = models.CharField(max_length=50)
     date = models.DateField(verbose_name="Date Pices")
     price = models.CharField(max_length=150 )
+    checkpoint = models.CharField(max_length=12, help_text = "Donde va a teletransportarse el observador ex:0 0 0")
     position = models.CharField(max_length=12, help_text = "0 0 0")
     rotation = models.CharField(max_length=12, help_text = "0 0 0")
     scale = models.CharField(max_length=12, help_text = "0 0 0")
