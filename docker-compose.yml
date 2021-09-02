@@ -7,8 +7,8 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'localhost -> web:8080'
-      STAGE: 'local'
+      DOMAINS: 'test.juanjosegarcia.net -> web:8080'
+      STAGE: 'production'
       CLIENT_MAX_BODY_SIZE: 25M
     volumes:
       - https-portal-data:/var/lib/https-portal
