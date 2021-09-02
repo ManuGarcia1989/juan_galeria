@@ -32,8 +32,13 @@
                   position="{{ obra.position }}"
                   rotation="{{ obra.rotation }}"
                   scale="{{ obra.scale }}">
-                <a-image src="#footsteps" position="0 2 0" checkpoint="offset: {{ obra.checkpoint}}"
-				 look-at="#blink"></a-image>
+        <a-image src="#footsteps" position="0 2 0" checkpoint="offset: {{ obra.checkpoint}}"></a-image>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.title }}; align: center" position="0 1.475 0" scale="2 2 2"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.dimentions }}; align: center" position="0 1.39 0" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.date }}; align: center" position="0 1.33 0" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: ${{ obra.price }}; align: center" position="0 -1.3 0" scale="2 2 2"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: ${{ obra.description }}; align: left" position="1.8 0 0" scale="1.5 1.5 1.5"></a-entity>
+
         </a-entity>
     {% endfor %}
 
