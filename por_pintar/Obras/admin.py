@@ -3,11 +3,11 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-class ObrasAdmin(admin.ModelAdmin):
+class ObraAdmin(admin.ModelAdmin):
     list_display = ['title','price']
     search_fields = ['title','price']
 
-class LightsAdmin(admin.ModelAdmin):
+class LightAdmin(admin.ModelAdmin):
     list_display = ['type', 'intensity','position']
     search_fields = ['type', 'intensity','position']
 
@@ -15,6 +15,11 @@ class SceneAdmin(admin.ModelAdmin):
     list_display = ['name','active']
     search_fields = ['name','active']
 
-admin.site.register(Obras, ObrasAdmin)
-admin.site.register(Lights, LightsAdmin)
+class ObjectGltfAdmin(admin.ModelAdmin):
+    list_display = ['name','active']
+    search_fields = ['name','active']
+
+admin.site.register(Obra, ObraAdmin)
+admin.site.register(Light, LightAdmin)
 admin.site.register(Scene, SceneAdmin)
+admin.site.register(ObjectGltf, ObjectGltfAdmin)

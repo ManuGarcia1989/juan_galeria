@@ -23,6 +23,9 @@
         {% for obra in obras %}
         <a-asset-item id="obra_{{ obra.id }}" src="/media/{{ obra.model }}" ></a-asset-item>
         {% endfor %}
+        {% for object in objects_gltf %}
+        <a-asset-item id="object_gltf_{{ object.id }}" src="/media/{{ object.model }}" ></a-asset-item>
+        {% endfor %}
 
     </a-assets>
 
@@ -33,13 +36,25 @@
                   rotation="{{ obra.rotation }}"
                   scale="{{ obra.scale }}">
         <a-image src="#footsteps" position="0 2 0" checkpoint="offset: {{ obra.checkpoint}}"></a-image>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.title }}; align: center" position="0 1.475 0" scale="2 2 2"></a-entity>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.dimentions }}; align: center" position="0 1.39 0" scale="1.5 1.5 1.5"></a-entity>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: {{ obra.date }}; align: center" position="0 1.33 0" scale="1.5 1.5 1.5"></a-entity>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: ${{ obra.price }}; align: center" position="0 -1.3 0" scale="2 2 2"></a-entity>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: ${{ obra.description }}; align: left" position="1.8 0 0" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/Roboto-msdf.json; value: {{ obra.title }}; align: center" position="0 1.475 0" scale="2 2 2"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/Roboto-msdf.json; value: {{ obra.dimentions }}; align: center" position="0 1.39 0" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/Roboto-msdf.json; value: {{ obra.date }}; align: center" position="0 1.33 0" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/Roboto-msdf.json; value: ${{ obra.price }}; align: center" position="0 -1.3 0" scale="2 2 2"></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/Roboto-msdf.json; value: {{ obra.description }}; align: left" position="1.8 0 0" scale="1.5 1.5 1.5"></a-entity>
 
         </a-entity>
+    {% endfor %}
+
+    {% for object in objects_gltf %}
+        {% if object.active %}
+        <a-entity id="object_gltf_escena_{{ object.id }}"
+                  gltf-model="#object_gltf_{{ object.id }}"
+                  position="{{ object.position }}"
+                  rotation="{{ object.rotation }}"
+                  scale="{{ object.scale }}">
+
+        </a-entity>
+        {% endif %}
     {% endfor %}
 
     <a-entity scenemodelo gltf-model="#scene3d" scale="1 1 1"  material modify-materials></a-entity>
